@@ -15,6 +15,7 @@ $(document).ready(function () {
                 $(".login-submit-btn").attr("disabled", "disabled");
             },
             success: function (response) {
+                alert(response);
                 if (response.trim() == "Login success") {
                     location = "profile/profile.php";
                 } else if (response.trim() == "Login pending") {

@@ -17,7 +17,14 @@
                 echo "Login success";
             }
             else{
-                echo "Login pending";
+                $get_code = "SELECT activation_code FROM users WHERE username = '$username' AND user_password = '$password'";
+                $response_get_code = $db->query($get_code);
+                $data = $response_get_code->fetch_assoc();
+                $final_code = $data['activation_code'];
+                $check_code_email = mail($username, "Picdrive activation code", "Thanks for choosing our product your activation code is ".$final_code);
+                if($check_code_email == true){
+                    echo "Login pending";
+                }
             }
         }else{
             echo "Wrong password";
