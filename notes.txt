@@ -1,0 +1,7 @@
+php extra properties -
+
+    rand(1, 12) - to generate random number
+
+    strlen($password) - to calculate length of password
+
+    sizeof($array) - to calculate size of a array
