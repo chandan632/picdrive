@@ -43,9 +43,8 @@
                     <button class="btn float-right generate-btn">GENERATE</button>
 
                     <button class="btn submit-btn m-3" type="submit" disabled="disabled">Register now</button>
-                    <div class="signup-notice p-2"></div>
                 </form>
-
+                <div class="signup-notice p-2"></div>
                 <div class="px-2 d-none activator">
                     <span>Please check your email to get activation code</span>
                     <input type="text" name="code" id="code" class="my-3" placeholder="Activation code">

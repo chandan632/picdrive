@@ -15,12 +15,42 @@ $(document).ready(function () {
                 $(".login-submit-btn").attr("disabled", "disabled");
             },
             success: function (response) {
-                alert(response);
                 if (response.trim() == "Login success") {
                     location = "profile/profile.php";
                 } else if (response.trim() == "Login pending") {
                     $("#login-form").fadeOut(500, function () {
                         $(".login-activator").removeClass("d-none");
+                        $(".login-activate-btn").click(function (event) {
+                            event.preventDefault();
+                            $.ajax({
+                                type: "post",
+                                url: "php/activator.php",
+                                data: {
+                                    code: btoa($("#login-code").val()),
+                                    username: btoa($("#login-email").val())
+                                },
+                                beforeSend: function () {
+                                    $(".login-activate-btn").html("Please wait we are checking!");
+                                    $(".login-activate-btn").attr("disabled", "disabled");
+                                },
+                                success: function (response) {
+                                    if (response.trim() == "user verified") {
+                                        window.location = "profile/profile.php";
+                                    } else {
+                                        $(".login-activate-btn").html("Activate now");
+                                        $(".login-activate-btn").removeAttr("disabled");
+                                        $("#login-code").val("");
+                                        var notice = document.createElement("DIV");
+                                        notice.className = "alert alert-warning";
+                                        notice.innerHTML = "<b>Wrong activation code</b>";
+                                        $(".login-notice").append(notice);
+                                        setTimeout(function () {
+                                            $(".login-notice").html("");
+                                        }, 5000)
+                                    }
+                                }
+                            });
+                        });
                     })
                 } else if (response.trim() == "Wrong password") {
                     var message = document.createElement("DIV");
