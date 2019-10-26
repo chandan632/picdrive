@@ -5,3 +5,5 @@ php extra properties -
     strlen($password) - to calculate length of password
 
     sizeof($array) - to calculate size of a array
+
+    pathinfo($path) - where $path = "images/doc/pic.jpg" dirname,basename,filename,extension

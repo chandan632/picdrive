@@ -15,6 +15,8 @@
             $response_status = $db->query($check_status);
             if($response_status->num_rows != 0){
                 echo "Login success";
+                session_start();
+                $_SESSION["username"] = $username;
             }
             else{
                 $get_code = "SELECT activation_code FROM users WHERE username = '$username' AND user_password = '$password'";
