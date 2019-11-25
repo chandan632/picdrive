@@ -65,6 +65,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(".delete-icon").each(function () {
         $(this).click(function () {
+            var delete_icon = this;
             $.ajax({
                 type: "POST",
                 url: "php/delete.php",
@@ -74,6 +75,11 @@ $(document).ready(function () {
                 beforeSend: function () {
                     $(this).removeClass("fa fa-trash");
                     $(this).addClass("fa fa-spinner fa-spin");
+                },
+                success: function (response) {
+                    if (response.trim() == "delete success") {
+                        delete_icon.parentElement.parentElement.style.display = 'none';
+                    }
                 }
             });
         });

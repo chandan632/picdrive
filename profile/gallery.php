@@ -13,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profile Page</title>
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/animate.css">
     <link href="https://fonts.googleapis.com/css?family=Francois+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="./../js/jquery-3.4.1.min.js"></script>
@@ -49,7 +50,7 @@
         </ul>
     </nav>
     <br>
-    <div class="container">
+    <div class="container mt-5">
     <div class="row">
     <?php
         $table_name = $_SESSION['table_name'];
@@ -60,10 +61,10 @@
            $image_name = pathinfo($data['image_name']);
            $image_name = $image_name['filename'];
            $path = str_replace("../","",$data['image_path']);
-           echo "<div class='col-md-3'>
-            <div class='card'>
+           echo "<div class='col-md-3 px-5 pb-5'>
+            <div class='card shadow-lg'>
                 <div class='card-body d-flex justify-content-center align-items-center'>
-                    <img src='".$path."' width='100' height='150' class='rounded-circle'>
+                    <img src='".$path."' width='100' height='150' class='rounded-circle pic'>
                 </div>
                 <div class='card-footer d-flex justify-content-around align-items-center'>
                 <span>".$image_name."</span>
@@ -79,5 +80,29 @@
     ?>
     </div>
     </div>
+    <div class="modal my-5 animated bounceIn" id="view-modal">
+        <div class="modal-dialog">
+        <i class="fa fa-times-circle float-right text-white" data-dismiss="modal"></i>
+            <div class="modal-content">
+            
+                <div class="modal-body">
+                    welcome
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $(".pic").each(function(){
+                $(this).click(function(){
+                    var image = document.createElement('IMG');
+                    image.src = $(this).attr("src");
+                    image.style.width = "100%";
+                    $(".modal-body").html(image);
+                    $("#view-modal").modal();
+                });
+            });
+        });
+    </script>
 </body>
 </html>

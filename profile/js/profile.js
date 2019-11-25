@@ -16,6 +16,16 @@ $(document).ready(function () {
                 cache: false,
                 success: function (response) {
                     alert(response);
+                    $.ajax({
+                        type: "POST",
+                        url: "php/count_photo.php",
+                        beforeSend: function () {
+                            $(".count-photo").html("Updating...");
+                        },
+                        success: function (response) {
+                            $(".count-photo").html(response);
+                        }
+                    });
                 }
             });
         }

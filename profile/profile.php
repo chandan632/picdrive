@@ -88,10 +88,11 @@
             <div class="col-md-6 p-5 border"></div>
             <div class="col-md-3 p-5 border">
             <div class="d-flex mb-5 flex-column justify-content-center align-items-center w-100 bg-white rounded-lg shadow-lg" style="height:250px">
-            <a href="gallery.php">
-                    <i class="fa fa-image" style="font-size:80px"></i></a>
+                    <a href="gallery.php">
+                    <i class="fa fa-image" style="font-size:80px"></i>
+                    </a>
                     <h4>GALLERY</h4>
-                    <span>
+                    <span class="count-photo">
                     <?php
                         $get_id = "SELECT id FROM users WHERE username = '$username'";
                         $response = $db->query($get_id);
@@ -103,6 +104,16 @@
                         echo $data['total']." PHOTOS";
                         $_SESSION['table_name'] = $table_name;
                     ?>
+                    </span>
+                </div>
+
+                <div class="d-flex mb-5 flex-column justify-content-center align-items-center w-100 bg-white rounded-lg shadow-lg" style="height:250px">
+                    <a href="shop.php">
+                    <i class="fa fa-shopping-cart" style="font-size:100px"></i>
+                    </a>
+                    <h4>MEMORY SHOPPING</h4>
+                    <span>
+                        STARTS FROM <i class="fa fa-inr"></i> 99.00/mo
                     </span>
                 </div>
             </div>
