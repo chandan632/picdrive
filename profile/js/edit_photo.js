@@ -8,6 +8,7 @@ $(document).ready(function () {
             var span = footer.getElementsByTagName("SPAN")[0];
             span.contentEditable = 'true';
             span.focus();
+            var old_name = span.innerHTML;
             $(this).addClass("d-none");
             var save_icon = footer.getElementsByClassName("save-icon")[0];
             var loader = footer.getElementsByClassName("loader")[0];
@@ -38,6 +39,11 @@ $(document).ready(function () {
                             $(loader).addClass("d-none");
                             $(save_icon).addClass("d-none");
                             $(edit_icon).removeClass("d-none");
+                            var previous_download_link = footer.getElementsByClassName("download-icon")[0].getAttribute("data-location");
+                            var current_download_link = previous_download_link.replace(old_name, photo_name);
+                            footer.getElementsByClassName("download-icon")[0].setAttribute("data-location", current_download_link);
+                            footer.getElementsByClassName("download-icon")[0].setAttribute("file-name", photo_name);
+                            footer.getElementsByClassName("delete-icon")[0].setAttribute("data-location", current_download_link);
                         }
                     }
                 });

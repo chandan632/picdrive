@@ -46,13 +46,29 @@
             <div class="col-md-3 p-5 border">
                 <div class="d-flex mb-5 flex-column justify-content-center align-items-center w-100 bg-white rounded-lg shadow-lg" style="height:250px">
                     <i class="fa fa-folder-open upload-icon" style="font-size:100px"></i>
-                    <h4>UPLOAD FILES</h4>
-                    <span>FREE SPACE : 10MB</span>
-                    <div class="progress w-50 my-2" style="height: 5px">
-                        <div class="progress-bar progress-bar-animated progress-bar-striped w-50"></div>
+                    <h4 class="upload-header">UPLOAD FILES</h4>
+                    <span class="free-space">
+                    <?php
+                        $get_status = "SELECT plans,storage,used_storage FROM users WHERE username = '$username'";
+                        $response = $db->query($get_status);
+                        $data = $response->fetch_assoc();
+                        $total = $data["storage"];
+                        $used = $data["used_storage"];
+                        $plan = $data['plans'];
+                        if($plan == 'starter'){
+                        $free_space = $total - $used;
+                        echo "FREE SPACE : ".$free_space." MB";
+                        }
+                        else{
+                            echo "FREE SPACE : UNMILITED";
+                        }
+                        ?>
+                    </span>
+                    <div class="progress upload-progress-con d-none w-50 my-2" style="height: 5px">
+                        <div class="progress-bar progress-bar-animated progress-bar-striped progress-control"></div>
                     </div>
-                    <div>
-                        <span>50%</span>
+                    <div class="progress-details d-none">
+                        <span class="progress-percentage"></span>
                         <i class="fa fa-pause-circle"></i>
                         <i class="fa fa-times-circle"></i>
                     </div>
@@ -61,13 +77,16 @@
                 <div class="d-flex mb-5 flex-column justify-content-center align-items-center w-100 bg-white rounded-lg shadow-lg" style="height:250px">
                     <i class="fa fa-database" style="font-size:80px"></i>
                     <h4>MEMORY STATUS</h4>
-                    <span class="memory">
+                    <span class="memory memory-status">
                     <?php
-                        $get_status = "SELECT storage,used_storage FROM users WHERE username = '$username'";
+                        $get_status = "SELECT plans,storage,used_storage FROM users WHERE username = '$username'";
                         $response = $db->query($get_status);
                         $data = $response->fetch_assoc();
                         $total = $data["storage"];
                         $used = $data["used_storage"];
+                        $plans = $data['plans'];
+                        if($plans == 'starter'){
+                            $display = "d-block";
                         echo $used."MB/".$total."MB";
                         $percentage = round(($used * 100) / $total, 2);
                         $color = "";
@@ -78,10 +97,15 @@
                         else{
                             $color = "bg-primary";
                         }
+                    }
+                    else{
+                        echo "Used storage : ".$used."MB";
+                        $display = "d-none";
+                    }
                     ?>
                     </span>
-                    <div class="progress w-50 my-2" style="height: 5px">
-                        <div class="progress-bar <?php echo $color;?>" style="width:<?php echo $percentage.'%'; ?> "></div>
+                    <div class="progress w-50 my-2 <?php echo $display; ?>" style="height: 5px">
+                        <div class="progress-bar memory-progress <?php echo $color;?>" style="width:<?php echo $percentage.'%'; ?> "></div>
                     </div>
                 </div>
             </div>
