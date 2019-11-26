@@ -2,6 +2,7 @@ $(document).ready(function () {
     $("#email").on("change", function () {
         if ($(this).val() != "") {
             $.ajax({
+                cache: false,
                 type: "POST",
                 url: "php/check_user.php",
                 data: {

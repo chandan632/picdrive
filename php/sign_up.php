@@ -28,3 +28,9 @@
         echo "sign up failed";
     }
 ?>
+
+<?php
+
+    $db->close();
+
+?>

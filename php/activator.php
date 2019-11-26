@@ -34,3 +34,9 @@
         echo "Wrong activation code";
     }
 ?>
+
+<?php
+
+    $db->close();
+
+?>

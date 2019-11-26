@@ -121,3 +121,9 @@
     </script>
 </body>
 </html>
+
+<?php
+
+    $db->close();
+
+?>

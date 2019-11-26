@@ -16,6 +16,7 @@ $(document).ready(function () {
             $(save_icon).click(function () {
                 var photo_name = span.innerHTML;
                 $.ajax({
+                    cache: false,
                     type: "POST",
                     url: "php/rename.php",
                     data: {
@@ -44,6 +45,9 @@ $(document).ready(function () {
                             footer.getElementsByClassName("download-icon")[0].setAttribute("data-location", current_download_link);
                             footer.getElementsByClassName("download-icon")[0].setAttribute("file-name", photo_name);
                             footer.getElementsByClassName("delete-icon")[0].setAttribute("data-location", current_download_link);
+
+                            footer.getElementsByClassName("edit-icon")[0].setAttribute("data-location", current_download_link);
+                            footer.getElementsByClassName("edit-icon")[0].setAttribute("file-name", photo_name);
                         }
                     }
                 });
@@ -73,6 +77,7 @@ $(document).ready(function () {
         $(this).click(function () {
             var delete_icon = this;
             $.ajax({
+                cache: false,
                 type: "POST",
                 url: "php/delete.php",
                 data: {

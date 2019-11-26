@@ -10,3 +10,9 @@
         echo "user not found";
     }
 ?>
+
+<?php
+
+    $db->close();
+
+?>

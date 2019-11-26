@@ -12,3 +12,9 @@
   echo $data['total']." PHOTOS";
   $_SESSION['table_name'] = $table_name;
 ?>
+
+<?php
+
+    $db->close();
+
+?>

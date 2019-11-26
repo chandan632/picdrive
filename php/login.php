@@ -36,3 +36,9 @@
         echo "User not found!";
     }
 ?>
+
+<?php
+
+    $db->close();
+
+?>

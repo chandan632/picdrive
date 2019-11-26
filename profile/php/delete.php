@@ -42,3 +42,9 @@
         echo "delete failed!";
     }
 ?>
+
+<?php
+
+    $db->close();
+
+?>

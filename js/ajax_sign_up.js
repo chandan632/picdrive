@@ -2,6 +2,7 @@ $(document).ready(function () {
     $(".submit-btn").on('click', function (e) {
         e.preventDefault();
         $.ajax({
+            cache: false,
             type: "POST",
             url: "php/sign_up.php",
             data: {
